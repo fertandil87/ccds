@@ -1,6 +1,9 @@
 .heigth100{
     height: 100%;
 }
+.heigthFix{
+    height: 83%;
+}
 iframe{
     border: none;
 }
@@ -11,9 +14,14 @@ iframe{
     padding-right: 15px;
     padding-left: 15px;
 }
-
+.fullIframe{
+    width: 100%;
+    height: 100%
+}
 @media (max-width: 767px){
-
+    .heigthFix{
+        /*height: 65%;*/
+    }
     .visible-xs.collapse {
         display: none!important;
     }
