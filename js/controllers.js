@@ -5,6 +5,9 @@
 angular.module('myApp.controllers', [])
     .controller('MainCtrl', ['$scope', function($scope) {
             $scope.isCollapsed = true;
+            $scope.toggle = function(){
+                $('#boton').click();
+            };
         }])
     .controller('MyCtrl1', ['$scope', function($scope) {
             $scope.random = Math.random();
