@@ -8,7 +8,7 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.controllers',
-  'ui.bootstrap',
+  'mm.foundation',
   'ezfb'
 ]).
 config(['$routeProvider','ezfbProvider', function($routeProvider,ezfbProvider) {
