@@ -10,7 +10,6 @@ iframe{
 
 .fullIframe{
     width: 100%;
-    height: 100%
 }
 .navbar-default .navbar-brand{
     color: green;
@@ -32,4 +31,8 @@ iframe{
 }
 iframe .c3{
     margin: 0;
+}
+.banner{
+    background: #fefefe;
+    text-align: center;
 }
