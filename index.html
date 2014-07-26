@@ -39,24 +39,26 @@
                 <aside class="left-off-canvas-menu">
                     <ul class="off-canvas-list">
                         <li><label>Competencia</label></li>
-                        <li><a href="#">Copa de Serranos Tandil</a></li>
-                        <li><a href="#">Copa de Serranas Tandil</a></li>
+                        <li><a href="#/serranostandil/principal/posiciones">Copa de Serranos Tandil</a></li>
+                        <li><a href="#/serranastandil/principal/posiciones">Copa de Serranas Tandil</a></li>
                         <li><a href="#">Copa de Serranos Junin</a></li>
                     </ul>
                 </aside>
                 <aside class="right-off-canvas-menu">
                     <ul class="off-canvas-list">
-                        <li><label>Datos Principales</label></li>
-                        <li><a href="#/horarios">Horarios</a></li>
-                        <li><a href="#/posiciones">Posiciones</a></li>
-                        <li><a href="#/resultados">Resultados</a></li>
-                        <li><a href="#/amolestados">Amolestados</a></li>
-                        <li><label>Cronicas</label></li>
-                        <li><a href="#/cronicas/independiente">Independiente</a></li>
-                        <li><a href="#/cronicas/boca">Boca</a></li>
-                        <li><a href="#/cronicas/talleres">Talleres</a></li>
-                        <li><a href="#/cronicas/nahuel">Nahuel</a></li>
-                        <li><a href="#/cronicas/rivadavia">Rivadavia</a></li>
+                        <li>
+                            <label>{{ selectedMenu.principal.titulo }}</label>
+                        </li>
+                        <li ng-repeat="item in selectedMenu.principal.secciones">
+                            <a href="{{ item.link }}">{{ item.titulo }}</a>
+                        </li>
+                        <li>
+                            <label>{{ selectedMenu.cronicas.titulo }}</label>
+                        </li>
+                        <li ng-repeat="item in selectedMenu.cronicas.secciones">
+                            <a href="{{ item.link }}">{{ item.titulo }}</a>
+                        </li>
+                        
                     </ul>
                 </aside>
                 <section class="main-section">
@@ -83,6 +85,7 @@
         <script src="js/libs/mm-foundation-tpls-0.3.0.min.js"></script>
         <script src="js/app.js"></script>
         <script src="js/services.js"></script>
+        <script src="js/constants.js"></script>
         <script src="js/controllers.js"></script>
         <script src="js/filters.js"></script>
         <script src="js/directives.js"></script>

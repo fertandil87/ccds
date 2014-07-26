@@ -3,7 +3,8 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-    .controller('MainCtrl', ['$scope', function($scope) {
+    .controller('MainCtrl', ['$scope', '$routeParams', 'MENU',
+        function($scope, $routeParams, MENU) {
             $scope.navHeight = 45;
             $scope.bannerTop = 50;
             $scope.bannerBottom = 50;
@@ -26,31 +27,36 @@ angular.module('myApp.controllers', [])
                 $scope.height = myHeight;
             }
             $scope.getSizes();
-            console.log($scope.height);
             var clearHeight = $scope.height - $scope.navHeight - $scope.bannerTop - $scope.bannerBottom;
             $scope.iframeHeight = clearHeight+'px';
-            console.log($scope.iframeHeight);
             
             var container = angular.element(document.querySelector('#iframeContainer'));
-            console.log(container);
             container.css('height',$scope.iframeHeight + 'px');
-        }])
-    .controller('MyCtrl1', ['$scope', function($scope) {
-            $scope.random = Math.random();
-        }])
-    .controller('CronicasCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
-            $scope.cancha = $routeParams.cancha;
+            
+            $scope.menu = MENU;
+            $scope.selectedMenu = $scope.menu['serranostandil'];
+            $scope.$on('$routeChangeSuccess', function (event, current, previous) {
+                console.log($routeParams);
+                $scope.lugar = $routeParams.lugar;
+                $scope.selectedMenu = $scope.menu[$scope.lugar];
+                 // current is the current route
+                 // previous is the previous route
+             });
+        }
+    ])
+    .controller('DocumentosCtrl', ['$scope', '$routeParams', '$sce', 'DOCUMENTOS',
+        function($scope, $routeParams, $sce, DOCUMENTOS) {
+            $scope.lugar = $routeParams.lugar;
+            $scope.tipo = $routeParams.tipo;
+            $scope.documento = $routeParams.documento;
             $scope.trustSrc = function(src) {
                 return $sce.trustAsResourceUrl(src);
-            }
-            $scope.cronicas = {
-                nahuel: "https://docs.google.com/document/d/1djp1wVgEvSr542M5HzqZmBu3_0vu36NoFgIvRD5E-70/pub?embedded=true",
-                talleres: "https://docs.google.com/document/d/1joQp3VuY9JU8ZZpSFoDJBGk64TG6Pn6mSIdGTnVp6S4/pub?embedded=true",
-                boca: "https://docs.google.com/document/d/1AUOurFOMpgyWlsYshnCoflM_4AeB1kUAzssDNLAC6ek/pub?embedded=true",
-                independiente: "https://docs.google.com/document/d/1pJuoPUzN4ZYLwH2qP5Lrbkc_-ys5WAa59-10eGe3IeM/pub?embedded=true",
-                rivadavia: "https://docs.google.com/document/d/12SkwgXUtcVde3U8p4NFf5WQRwDQWkh9z8iPhjjWquwo/pub?embedded=true",
-            }
-            $scope.cronica = $scope.cronicas[$scope.cancha];
-            console.log($scope.cronica);
+            };
+            
+            $scope.documentos = DOCUMENTOS;
+            
+            var docId = $scope.lugar+'_'+$scope.tipo+'_'+$scope.documento;
+            $scope.googledoclink = $scope.documentos[docId];
             $scope.random = Math.random();
-        }]);
+        }
+    ]);
